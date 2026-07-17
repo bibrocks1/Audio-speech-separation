@@ -1,0 +1,111 @@
+# ============================================================
+# Global .gitignore for Audio Separation Repository
+# ============================================================
+
+# ── Model Checkpoints & Weights ──────────────────────────────
+*.pt
+*.pth
+*.bin
+*.h5
+*.weights
+checkpoints/
+models/
+saved_models/
+
+# ── Data Files (Large Media) ─────────────────────────────────
+*.zip
+*.tar.gz
+*.tar
+*.rar
+*.7z
+data/
+datasets/
+indices/
+cache/
+*.wav
+*.flac
+*.mp3
+*.ogg
+*.m4a
+
+# ── Python Artifacts ─────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ── Virtual Environments ─────────────────────────────────────
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# ── IDE & Editor Files ───────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# ── Jupyter Notebooks ────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Logs & Outputs ───────────────────────────────────────────
+logs/
+outputs/
+*.log
+*.csv
+runs/
+tensorboard/
+
+# ── OS Generated Files ───────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── Temporary & Cache Files ──────────────────────────────────
+*.tmp
+*.temp
+.tmp/
+.temp/
+tmp/
+temp/
+
+# ── Kiro Spec Files (development artifacts) ──────────────────
+.kiro/specs/*/tasks.md
+.kiro/specs/*/design.md
+.kiro/specs/*/requirements.md
+.kiro/specs/*/bugfix.md
+
+# ── Environment Variables ────────────────────────────────────
+.env.local
+.env.*.local
+
+# ── Kaggle Specific ──────────────────────────────────────────
+kaggle.json
