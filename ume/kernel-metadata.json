@@ -1,0 +1,15 @@
+{
+  "id": "anonymous123443/iv-speech-masked-decoding",
+  "title": "iv-speech-masked-decoding",
+  "code_file": "preprocess_pipeline.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": "false",
+  "enable_gpu": "true",
+  "enable_internet": "true",
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [
+    "abhhinavjoshi/iv-speech-10gb-pipeline"
+  ]
+}
