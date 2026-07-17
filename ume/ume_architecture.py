@@ -189,20 +189,13 @@ class TagSpeechLLM(nn.Module):
         self.target_embed = nn.Embedding(vocab_size, hidden_dim)
         self.output_layer = nn.Linear(hidden_dim, vocab_size)
 
-    def generate_causal_mask(self, sz, device):
-        mask = (torch.triu(torch.ones(sz, sz, device=device)) == 1).transpose(0, 1)
-        mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
-        return mask
-
     def forward(self, enc_embeddings, target_tokens):
         # enc_embeddings shape: [Batch, Frames, Hidden]
         # target_tokens shape: [Batch, SeqLen]
-        seq_len = target_tokens.size(1)
-        tgt_mask = self.generate_causal_mask(seq_len, target_tokens.device)
         tgt_emb = self.target_embed(target_tokens)  # [Batch, SeqLen, Hidden]
         
         # Autoregressive decoding
-        dec_out = self.llm_decoder(tgt_emb, enc_embeddings, tgt_mask=tgt_mask)  # [Batch, SeqLen, Hidden]
+        dec_out = self.llm_decoder(tgt_emb, enc_embeddings)  # [Batch, SeqLen, Hidden]
         logits = self.output_layer(dec_out)  # [Batch, SeqLen, VocabSize]
         return logits
 
