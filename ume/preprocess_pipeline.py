@@ -203,19 +203,17 @@ class TagSpeechLLM(nn.Module):
         return logits
 
 class SidecarSeparator(nn.Module):
-    """Residual branch TCN activated during Stage 2 training."""
+    """Residual Transformer sidecar with high separating capacity."""
     def __init__(self, hidden_dim=256):
         super().__init__()
-        self.tcn = nn.Sequential(
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1)
+        self.separator = nn.TransformerEncoder(
+            nn.TransformerEncoderLayer(d_model=hidden_dim, nhead=4, dim_feedforward=512, batch_first=True),
+            num_layers=2
         )
 
     def forward(self, x):
-        x_conv = x.transpose(1, 2)
-        out_conv = self.tcn(x_conv)
-        return x + out_conv.transpose(1, 2)
+        # x shape: [Batch, Frames, Hidden]
+        return x + self.separator(x)
 
 class iVPipeline(nn.Module):
     """Full integrated ASR and speech separation pipeline."""
@@ -453,13 +451,13 @@ def main():
     model = iVPipeline(vocab_size=VOCAB_SIZE, hidden_dim=HIDDEN_DIM).to(device)
     
     # 4. Stage 1 warmup
-    train_stage1_warmup(model, loader1, epochs=5, device=device)
+    train_stage1_warmup(model, loader1, epochs=15, device=device)
     
     # 5. Freezing & inserting separator branch
     freeze_encoder_and_insert_sidecar(model)
     
     # 6. Stage 2 escalation
-    train_stage2_escalation(model, loader2, loader3, epochs=5, device=device)
+    train_stage2_escalation(model, loader2, loader3, epochs=20, device=device)
     
     print("\n====================================================")
     print("Training complete! All stages completed and final checkpoints saved.")

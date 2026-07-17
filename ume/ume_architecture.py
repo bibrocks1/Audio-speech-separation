@@ -189,13 +189,20 @@ class TagSpeechLLM(nn.Module):
         self.target_embed = nn.Embedding(vocab_size, hidden_dim)
         self.output_layer = nn.Linear(hidden_dim, vocab_size)
 
+    def generate_causal_mask(self, sz, device):
+        mask = (torch.triu(torch.ones(sz, sz, device=device)) == 1).transpose(0, 1)
+        mask = mask.float().masked_fill(mask == 0, float('-inf')).masked_fill(mask == 1, float(0.0))
+        return mask
+
     def forward(self, enc_embeddings, target_tokens):
         # enc_embeddings shape: [Batch, Frames, Hidden]
         # target_tokens shape: [Batch, SeqLen]
+        seq_len = target_tokens.size(1)
+        tgt_mask = self.generate_causal_mask(seq_len, target_tokens.device)
         tgt_emb = self.target_embed(target_tokens)  # [Batch, SeqLen, Hidden]
         
         # Autoregressive decoding
-        dec_out = self.llm_decoder(tgt_emb, enc_embeddings)  # [Batch, SeqLen, Hidden]
+        dec_out = self.llm_decoder(tgt_emb, enc_embeddings, tgt_mask=tgt_mask)  # [Batch, SeqLen, Hidden]
         logits = self.output_layer(dec_out)  # [Batch, SeqLen, VocabSize]
         return logits
 
@@ -204,22 +211,17 @@ class TagSpeechLLM(nn.Module):
 # ----------------------------------------------------
 
 class SidecarSeparator(nn.Module):
-    """Lightweight residual Temporal Convolutional Network (TCN) branch."""
+    """Residual Transformer sidecar with high separating capacity."""
     def __init__(self, hidden_dim=256):
         super().__init__()
-        self.tcn = nn.Sequential(
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1)
+        self.separator = nn.TransformerEncoder(
+            nn.TransformerEncoderLayer(d_model=hidden_dim, nhead=4, dim_feedforward=512, batch_first=True),
+            num_layers=2
         )
 
     def forward(self, x):
         # x shape: [Batch, Frames, Hidden]
-        # Permute for 1D convolution: [Batch, Hidden, Frames]
-        x_conv = x.transpose(1, 2)
-        out_conv = self.tcn(x_conv)
-        # Permute back: [Batch, Frames, Hidden]
-        return x + out_conv.transpose(1, 2)
+        return x + self.separator(x)
 
 # ----------------------------------------------------
 # 5. Full Integrated iV Pipeline
