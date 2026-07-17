@@ -31,6 +31,21 @@ def run_inference():
     model = iVPipeline(vocab_size=VOCAB_SIZE, hidden_dim=HIDDEN_DIM).to(device)
     
     checkpoint_path = "checkpoints/iv_model_stage2_epoch_5.pt"
+    
+    # Try downloading the trained model weights directly from Kaggle Hub
+    try:
+        import kagglehub
+        print("\nAttempting to download model weights from Kaggle Hub...")
+        model_dir = kagglehub.model_download("abhhinavjoshi/iv-speech-info-leaked/PyTorch/default")
+        pt_files = [f for f in os.listdir(model_dir) if f.endswith(".pt") or f.endswith(".pth")]
+        if pt_files:
+            checkpoint_path = os.path.join(model_dir, pt_files[0])
+            print(f"Successfully downloaded weights from Kaggle Hub. Using checkpoint: {checkpoint_path}")
+        else:
+            print("No checkpoint files (.pt/.pth) found in Kaggle Hub download directory.")
+    except Exception as e:
+        print(f"Kaggle Hub download skipped or failed: {e}. Falling back to local checkpoints.")
+
     if os.path.exists(checkpoint_path):
         print(f"\nLoading weights from {checkpoint_path}...")
         model.load_state_dict(torch.load(checkpoint_path, map_location=device))
