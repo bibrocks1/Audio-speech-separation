@@ -203,20 +203,37 @@ class TagSpeechLLM(nn.Module):
         logits = self.output_layer(dec_out)
         return logits
 
+class DilatedTCNBlock(nn.Module):
+    def __init__(self, hidden_dim, dilation):
+        super().__init__()
+        self.conv = nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=dilation, dilation=dilation)
+        self.relu = nn.ReLU()
+        self.norm = nn.GroupNorm(8, hidden_dim)
+        
+    def forward(self, x):
+        return x + self.norm(self.relu(self.conv(x)))
+
 class SidecarSeparator(nn.Module):
-    """Residual branch TCN activated during Stage 2 training."""
+    """Deep Dilated TCN sidecar separator (TasNet style) with zero-initialized scaling."""
     def __init__(self, hidden_dim=256):
         super().__init__()
         self.tcn = nn.Sequential(
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1),
-            nn.ReLU(),
-            nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=1)
+            DilatedTCNBlock(hidden_dim, dilation=1),
+            DilatedTCNBlock(hidden_dim, dilation=2),
+            DilatedTCNBlock(hidden_dim, dilation=4),
+            DilatedTCNBlock(hidden_dim, dilation=8),
+            DilatedTCNBlock(hidden_dim, dilation=16)
         )
+        self.scale = nn.Parameter(torch.zeros(1))
 
     def forward(self, x):
+        # x shape: [Batch, Frames, Hidden]
+        # Transpose for Conv1d: [Batch, Hidden, Frames]
         x_conv = x.transpose(1, 2)
         out_conv = self.tcn(x_conv)
-        return x + out_conv.transpose(1, 2)
+        # Transpose back: [Batch, Frames, Hidden]
+        out = out_conv.transpose(1, 2)
+        return x + self.scale * out
 
 class iVPipeline(nn.Module):
     """Full integrated ASR and speech separation pipeline."""
@@ -272,7 +289,7 @@ def train_stage1_warmup(model, train_loader, epochs=5, device="cpu"):
         
         for mix, clean, targets in train_loader:
             mix, clean, targets = mix.to(device), clean.to(device), targets.to(device)
-            acx_clap = torch.zeros(mix.size(0), mix.size(2), device=device)
+            acx_clap = torch.mean(torch.abs(clean), dim=1)
             
             target_input = targets[:, :-1]
             target_labels = targets[:, 1:]
@@ -299,12 +316,19 @@ def train_stage1_warmup(model, train_loader, epochs=5, device="cpu"):
     print("Stage 1 completed successfully and checkpoints saved.")
 
 def freeze_encoder_and_insert_sidecar(model):
-    print("\n--- Freezing Foundational Encoder and Activating Sidecar TCN branch ---")
+    print("\n--- Freezing Foundational Encoder, Activating Sidecar, and Unfreezing LayerNorm Adapters ---")
     model.freeze_encoder = True
     for param in model.parameters():
         param.requires_grad = False
+    
+    # Unfreeze all parameters of the Sidecar Separator
     for param in model.sidecar.parameters():
         param.requires_grad = True
+        
+    # Unfreeze LayerNorm weights to act as parameter-efficient ASR adapters
+    for name, param in model.named_parameters():
+        if "norm" in name or "LayerNorm" in name:
+            param.requires_grad = True
 
 def train_stage2_escalation(model, train_loader_2spk, train_loader_3spk, epochs=5, device="cpu"):
     print("\n--- Starting Stage 2: Overlapped Escalation Optimization (2 & 3 Speakers) ---")
@@ -319,7 +343,7 @@ def train_stage2_escalation(model, train_loader_2spk, train_loader_3spk, epochs=
         loss_2spk = 0.0
         for mix, clean, targets in train_loader_2spk:
             mix, clean, targets = mix.to(device), clean.to(device), targets.to(device)
-            acx_clap = torch.randn(mix.size(0), mix.size(2), device=device) * 0.1
+            acx_clap = torch.mean(torch.abs(mix), dim=1)
             
             target_input = targets[:, :-1]
             target_labels = targets[:, 1:]
@@ -335,7 +359,7 @@ def train_stage2_escalation(model, train_loader_2spk, train_loader_3spk, epochs=
         loss_3spk = 0.0
         for mix, clean, targets in train_loader_3spk:
             mix, clean, targets = mix.to(device), clean.to(device), targets.to(device)
-            acx_clap = torch.randn(mix.size(0), mix.size(2), device=device) * 0.2
+            acx_clap = torch.mean(torch.abs(mix), dim=1)
             
             target_input = targets[:, :-1]
             target_labels = targets[:, 1:]

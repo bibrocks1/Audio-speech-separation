@@ -210,19 +210,37 @@ class TagSpeechLLM(nn.Module):
 # 4. Sidecar Separator (Residual Branch)
 # ----------------------------------------------------
 
+class DilatedTCNBlock(nn.Module):
+    def __init__(self, hidden_dim, dilation):
+        super().__init__()
+        self.conv = nn.Conv1d(hidden_dim, hidden_dim, kernel_size=3, padding=dilation, dilation=dilation)
+        self.relu = nn.ReLU()
+        self.norm = nn.GroupNorm(8, hidden_dim)
+        
+    def forward(self, x):
+        return x + self.norm(self.relu(self.conv(x)))
+
 class SidecarSeparator(nn.Module):
-    """Residual Transformer sidecar with zero-initialized gating scale."""
+    """Deep Dilated TCN sidecar separator (TasNet style) with zero-initialized scaling."""
     def __init__(self, hidden_dim=256):
         super().__init__()
-        self.separator = nn.TransformerEncoder(
-            nn.TransformerEncoderLayer(d_model=hidden_dim, nhead=4, dim_feedforward=512, batch_first=True),
-            num_layers=2
+        self.tcn = nn.Sequential(
+            DilatedTCNBlock(hidden_dim, dilation=1),
+            DilatedTCNBlock(hidden_dim, dilation=2),
+            DilatedTCNBlock(hidden_dim, dilation=4),
+            DilatedTCNBlock(hidden_dim, dilation=8),
+            DilatedTCNBlock(hidden_dim, dilation=16)
         )
         self.scale = nn.Parameter(torch.zeros(1))
 
     def forward(self, x):
         # x shape: [Batch, Frames, Hidden]
-        return x + self.scale * self.separator(x)
+        # Transpose for Conv1d: [Batch, Hidden, Frames]
+        x_conv = x.transpose(1, 2)
+        out_conv = self.tcn(x_conv)
+        # Transpose back: [Batch, Frames, Hidden]
+        out = out_conv.transpose(1, 2)
+        return x + self.scale * out
 
 # ----------------------------------------------------
 # 5. Full Integrated iV Pipeline
