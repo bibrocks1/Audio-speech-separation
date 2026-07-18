@@ -1,6 +1,6 @@
 {
-  "id": "anonymous123443/iv-speech-calm-moe-training",
-  "title": "iv-speech-calm-moe-training",
+  "id": "abhhinavjoshi/iv-speech-dilated-tcn-sidecar",
+  "title": "iv-speech-dilated-tcn-sidecar",
   "code_file": "preprocess_pipeline.py",
   "language": "python",
   "kernel_type": "script",
