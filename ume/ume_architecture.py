@@ -211,17 +211,18 @@ class TagSpeechLLM(nn.Module):
 # ----------------------------------------------------
 
 class SidecarSeparator(nn.Module):
-    """Residual Transformer sidecar with high separating capacity."""
+    """Residual Transformer sidecar with zero-initialized gating scale."""
     def __init__(self, hidden_dim=256):
         super().__init__()
         self.separator = nn.TransformerEncoder(
             nn.TransformerEncoderLayer(d_model=hidden_dim, nhead=4, dim_feedforward=512, batch_first=True),
             num_layers=2
         )
+        self.scale = nn.Parameter(torch.zeros(1))
 
     def forward(self, x):
         # x shape: [Batch, Frames, Hidden]
-        return x + self.separator(x)
+        return x + self.scale * self.separator(x)
 
 # ----------------------------------------------------
 # 5. Full Integrated iV Pipeline
