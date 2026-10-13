@@ -1,0 +1,20 @@
+# GTX 1650 (4 GB, TU117: no tensor cores) profile. Only memory/speed levers live here; the
+# architecture is untouched. Measured with scripts/vram_probe.py on this GPU (2026-10-11,
+# 5 speakers, full train step incl. AdamW):
+#   4 s, batch 2: fp32 825 MB / 1.01 s per step  | AMP fp16 635 MB / 1.38 s per step
+#   4 s, batch 4: fp32 1569 MB / 2.31 s per step | AMP fp16 1223 MB / 2.87 s per step
+# Memory is far below 4 GB at the spec's 4 s segments; AMP is *slower* on this GPU
+# (no tensor cores), so training runs in fp32.
+extends: default.yaml
+audio:
+  segment_sec: 4.0          # lever 1: full spec length fits (no shortening needed)
+train:
+  batch_size: 2             # lever 2: micro-batch (best per-sample speed measured)
+  accumulation_steps: 8     # effective batch 16
+  amp: false                # lever 3: fp16 works (finite loss) but is slower here
+  grad_checkpoint: false    # lever 4: not needed (saves ~30 % memory, costs ~30 % time)
+  num_workers: 2            # lever 5: stage-3 mixing takes 0.23 s/mixture/worker vs ~0.55 s GPU
+                            #   time per mixture; 4 workers + 4 val workers ran out of RAM (15.4 GB)
+  val_num_workers: 1
+  pin_memory: true
+  empty_cache_every: 0      # lever 6: not needed

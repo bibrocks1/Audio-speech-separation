@@ -1,0 +1,14 @@
+# ~6-hour training budget on the GTX 1650 (12 epochs x 3000 on-the-fly mixtures).
+# Same curriculum stages as default.yaml, with boundaries scaled to the shorter schedule
+# (default: 10 / 30 of 50 epochs -> here 3 / 7 of 12). Full schedule: configs/gtx1650.yaml.
+extends: gtx1650.yaml
+data:
+  mixtures_per_epoch: 3000
+curriculum:
+  stages:
+    - {until_epoch: 3, num_speakers: [2], overlap: [0.0, 0.2], noise: false, reverb: false}
+    - {until_epoch: 7, num_speakers: [2, 3], overlap: [0.4, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: false}
+    - {until_epoch: null, num_speakers: [4, 5], overlap: [0.5, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: true}
+train:
+  epochs: 12
+  log_every: 100

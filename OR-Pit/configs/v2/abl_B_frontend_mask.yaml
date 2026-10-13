@@ -1,0 +1,4 @@
+# B: A + masks applied to the frontend (filterbank) features instead of LayerNorm-ed Y (R2.3).
+extends: ablation_base.yaml
+model: {preset: v1, mask_on: frontend}
+loss: {}

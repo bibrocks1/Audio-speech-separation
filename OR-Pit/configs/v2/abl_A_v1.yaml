@@ -1,0 +1,4 @@
+# A: original ARCHITECTURE.md v1 model, new training recipe.
+extends: ablation_base.yaml
+model: {preset: v1}
+loss: {}

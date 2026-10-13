@@ -1,5 +1,11 @@
-torch
-torchaudio
-speechbrain
-numpy
-scipy
+# OR-PiT runtime dependencies (Python 3.10-3.12).
+# Install PyTorch first from the CUDA index that matches your driver, for example:
+#   pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+numpy==1.26.4
+scipy==1.13.1
+soundfile==0.12.1
+pyyaml==6.0.2
+pyroomacoustics==0.8.3
+remotezip==0.12.3
+pytest==8.3.3
+# Optional: PESQ/STOI metrics (pip install pesq==0.0.4 pystoi==0.4.1) and figures (pip install matplotlib)

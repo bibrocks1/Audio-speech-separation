@@ -1,0 +1,4 @@
+# D: C + FiLM-conditioned TCN mask refinement = full OR-PiT v2.
+extends: ablation_base.yaml
+model: {preset: v2}
+loss: {match_cls_weight: 2.0}

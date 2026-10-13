@@ -1,0 +1,38 @@
+[project]
+name = "orpit"
+version = "2.0.0"
+description = "OR-PiT: speaker-count-agnostic single-channel speech separation (Branchformer encoder, Transformer-decoder attractors, Hungarian PIT)."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "numpy==1.26.4",
+    "scipy==1.13.1",
+    "soundfile==0.12.1",
+    "pyyaml==6.0.2",
+    "pyroomacoustics==0.8.3",
+    "remotezip==0.12.3",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.3", "ruff==0.17.0"]
+metrics = ["pesq==0.0.4", "pystoi==0.4.1"]
+
+[tool.setuptools.packages.find]
+include = ["orpit*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B905"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["orpit"]

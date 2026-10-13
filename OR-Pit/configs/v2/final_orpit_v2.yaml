@@ -1,0 +1,29 @@
+# Final OR-PiT v2 training run (~8 GPU-hours on the GTX 1650).
+# Data: LibriSpeech train-clean-100 + train-clean-360 (1,172 speakers) with on-the-fly mixing,
+# 8,000 WHAM! tr noise files; validation/test unchanged (dev-clean / test-clean recipes).
+extends: ../gtx1650.yaml
+model: {preset: v2}
+loss: {match_cls_weight: 2.0}
+audio:
+  segment_sec: 3.0
+  min_active_sec: 1.0
+data:
+  train_index: data/indices/train_100_360.json
+  mixtures_per_epoch: 4000
+  reverb: false               # benchmarks (own test, Libri2Mix/Libri3Mix) are anechoic + noise
+curriculum:
+  stages:
+    - {until_epoch: 2, num_speakers: [2, 3], overlap: [0.3, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: false}
+    - {until_epoch: null, num_speakers: [2, 3, 4, 5], overlap: [0.3, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: false}
+train:
+  epochs: 16
+  batch_size: 2
+  accumulation_steps: 8
+  lr: 5.0e-4
+  scheduler: warmup_cosine
+  warmup_steps: 300
+  min_lr_ratio: 0.05
+  max_minutes: 500            # hard stop at ~8.3 h (same budget as the Conv-TasNet baseline)
+  log_every: 200
+  ckpt_every_steps: 50
+  num_workers: 2

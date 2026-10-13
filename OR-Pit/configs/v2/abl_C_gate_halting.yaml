@@ -1,0 +1,4 @@
+# C: B + gated cgMLP (R2.2) + DETR-style halting-aware matching (R2.5).
+extends: ablation_base.yaml
+model: {preset: v1, mask_on: frontend, gated: true}
+loss: {match_cls_weight: 2.0}

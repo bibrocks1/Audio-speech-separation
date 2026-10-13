@@ -1,0 +1,11 @@
+# Conv-TasNet baseline: 2-speaker specialist, same data pipeline, same GPU and time budget as
+# final_orpit_v2.yaml. Trained only on 2-speaker noisy mixtures (it cannot output other counts).
+extends: final_orpit_v2.yaml
+model: {arch: convtasnet, n_src: 2}
+loss: {match_cls_weight: 0.0}   # no halting head
+curriculum:
+  stages:
+    - {until_epoch: null, num_speakers: [2], overlap: [0.3, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: false}
+train:
+  lr: 1.0e-3                  # Conv-TasNet paper uses Adam 1e-3
+  grad_checkpoint: true       # without it 2 x 3 s needs ~6.3 GB and spills into shared memory (6 s/batch)

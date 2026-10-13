@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Data, indices, recipes and audio (see README > Data)
+data/
+*.wav
+*.flac
+*.npz
+
+# Training runs, checkpoints and outputs
+runs/
+outputs/
+*.pt
+*.pth
+
+# Generated audio demos (scripts/make_demos.py)
+results/demos/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

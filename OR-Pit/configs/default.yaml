@@ -1,0 +1,66 @@
+# OR-PiT default configuration. Model hyper-parameters live in code (orpit/*.py) because
+# they are fixed by ARCHITECTURE.md; everything here is training / data policy.
+
+paths:
+  audio_root: null                   # LibriSpeech/, wham_noise_subset/, rir_banks/ ...; null = $ORPIT_AUDIO_ROOT or data/audio
+  meta_dir: data                     # indices/ and recipes/ (relative to OR-Pit/, git-ignored)
+  runs_dir: runs                     # checkpoints + CSV logs per run (git-ignored)
+
+audio:
+  sample_rate: 16000                 # ARCHITECTURE.md: 16 kHz
+  segment_sec: 4.0                   # ARCHITECTURE.md: 4 s = 64,000 samples → 8,000 frames
+  min_active_sec: 1.0                # every speaker is active ≥ 1 s inside a segment
+
+data:
+  train_index: data/indices/train.json          # LibriSpeech train-clean-100
+  train_noise_index: data/indices/noise_tr.json # WHAM! tr subset
+  val_recipes: data/recipes/val.json            # dev-clean + WHAM! cv (fixed)
+  test_recipes: data/recipes/test.json          # test-clean + WHAM! tt (fixed)
+  train_recipes: null                # set to a static recipe file to disable on-the-fly mixing
+  rir_bank_train: rir_banks/train.npz           # relative to audio_root; synthetic RIR if missing
+  rir_bank_eval: rir_banks/eval.npz
+  reverb: true                       # global reverb flag (curriculum stages decide when)
+  reverb_target: reverberant         # reverberant | early  (target = reverberant image or direct+50 ms)
+  mixtures_per_epoch: 4000           # on-the-fly "epoch" size
+  val_limit: null                    # evaluate only the first N val recipes (null = all)
+
+eval_mix:                            # distribution used by scripts/make_mixtures.py for val/test
+  num_speakers: [2, 3, 4, 5]
+  overlap: [0.0, 1.0]
+  noise: true
+  snr_db: [-5.0, 5.0]
+  reverb: false
+  n_val: 400
+  n_test: 1000
+  seed_val: 1001
+  seed_test: 2002
+
+curriculum:
+  stages:
+    - {until_epoch: 10, num_speakers: [2], overlap: [0.0, 0.2], noise: false, reverb: false}
+    - {until_epoch: 30, num_speakers: [2, 3], overlap: [0.4, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: false}
+    - {until_epoch: null, num_speakers: [4, 5], overlap: [0.5, 1.0], noise: true, snr_db: [-5.0, 5.0], reverb: true}
+
+train:
+  seed: 42
+  epochs: 50
+  batch_size: 2
+  accumulation_steps: 8              # effective batch 16
+  lr: 1.0e-4                         # AdamW (original recipe)
+  weight_decay: 0.01
+  grad_clip: 5.0
+  scheduler: plateau                 # plateau | none   (ReduceLROnPlateau on val loss)
+  plateau_factor: 0.5
+  plateau_patience: 3
+  amp: true                          # fp16 autocast on CUDA; loss always fp32
+  grad_checkpoint: false
+  num_workers: 2
+  val_num_workers: 1                 # each Windows worker is a full Python+torch process (RAM)
+  pin_memory: true
+  max_steps_per_epoch: null          # cap micro-batches per epoch (smoke / short runs)
+  max_minutes: null                  # stop training after N minutes (saves a checkpoint)
+  log_every: 20                      # micro-batches
+  ckpt_every_steps: 200              # optimizer steps between mid-epoch last.pt saves
+  keep_epoch_ckpts: 3
+  empty_cache_every: 0               # torch.cuda.empty_cache() every N micro-batches (0 = never)
+  device: auto

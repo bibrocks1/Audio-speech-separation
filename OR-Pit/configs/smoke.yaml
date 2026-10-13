@@ -1,0 +1,31 @@
+# CPU/GPU smoke test on the clearly-labelled SYNTHETIC dataset (scripts/make_synthetic.py).
+extends: default.yaml
+paths:
+  audio_root: data/synthetic          # relative to OR-Pit/
+audio:
+  segment_sec: 1.0
+  min_active_sec: 0.5
+data:
+  train_index: data/synthetic/index_train.json
+  train_noise_index: null
+  val_recipes: data/synthetic/recipes_val.json
+  test_recipes: data/synthetic/recipes_test.json
+  rir_bank_train: null
+  rir_bank_eval: null
+  mixtures_per_epoch: 16
+eval_mix:
+  num_speakers: [2, 3]
+  reverb: false
+  n_val: 8
+  n_test: 8
+curriculum:
+  stages:
+    - {until_epoch: 1, num_speakers: [2], overlap: [0.8, 1.0], noise: false, reverb: false}
+    - {until_epoch: null, num_speakers: [2, 3], overlap: [0.5, 1.0], noise: true, snr_db: [5.0, 10.0], reverb: true}
+train:
+  epochs: 2
+  batch_size: 2
+  accumulation_steps: 2
+  num_workers: 0
+  log_every: 2
+  ckpt_every_steps: 2

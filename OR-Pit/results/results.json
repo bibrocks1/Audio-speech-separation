@@ -1,0 +1,1461 @@
+{
+ "ablation_A": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.290823206469416,
+   "si_sdri": 2.716108072988689,
+   "count_acc": 0.248,
+   "si_sdri_estcount": 2.348347323810682,
+   "count_confusion": {
+    "2->0": 12,
+    "2->1": 12,
+    "2->2": 30,
+    "2->3": 28,
+    "2->4": 79,
+    "2->5": 82,
+    "2->6": 7,
+    "3->0": 5,
+    "3->1": 5,
+    "3->2": 14,
+    "3->3": 10,
+    "3->4": 68,
+    "3->5": 137,
+    "3->6": 11,
+    "4->0": 3,
+    "4->1": 4,
+    "4->2": 4,
+    "4->3": 7,
+    "4->4": 43,
+    "4->5": 153,
+    "4->6": 36,
+    "5->0": 1,
+    "5->2": 3,
+    "5->3": 6,
+    "5->4": 35,
+    "5->5": 165,
+    "5->6": 40
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.3131210773587227,
+   "si_sdri": 2.7777979689836503,
+   "count_acc": 0.12,
+   "si_sdri_estcount": 2.2383219100236893,
+   "count_confusion": {
+    "2->0": 12,
+    "2->1": 12,
+    "2->2": 30,
+    "2->3": 28,
+    "2->4": 79,
+    "2->5": 82,
+    "2->6": 7
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.59360806119442,
+   "si_sdri": 2.804751556366682,
+   "count_acc": 0.04,
+   "si_sdri_estcount": 2.4574880607128144,
+   "count_confusion": {
+    "3->0": 5,
+    "3->1": 5,
+    "3->2": 14,
+    "3->3": 10,
+    "3->4": 68,
+    "3->5": 137,
+    "3->6": 11
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.6123517847061155,
+   "si_sdri": 2.6859204952716826,
+   "count_acc": 0.172,
+   "si_sdri_estcount": 2.413166304111481,
+   "count_confusion": {
+    "4->0": 3,
+    "4->1": 4,
+    "4->2": 4,
+    "4->3": 7,
+    "4->4": 43,
+    "4->5": 153,
+    "4->6": 36
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.644211902618408,
+   "si_sdri": 2.595962271332741,
+   "count_acc": 0.66,
+   "si_sdri_estcount": 2.2844130203947426,
+   "count_confusion": {
+    "5->0": 1,
+    "5->2": 3,
+    "5->3": 6,
+    "5->4": 35,
+    "5->5": 165,
+    "5->6": 40
+   }
+  },
+  "checkpoint": "runs\\abl_A_v1\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 284.4,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1"
+  }
+ },
+ "ablation_A_cal": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.290823206469416,
+   "si_sdri": 2.716108072988689,
+   "count_acc": 0.28,
+   "si_sdri_estcount": 2.0673579809162765,
+   "count_confusion": {
+    "2->0": 61,
+    "2->1": 15,
+    "2->2": 39,
+    "2->3": 39,
+    "2->4": 54,
+    "2->5": 42,
+    "3->0": 27,
+    "3->1": 11,
+    "3->2": 29,
+    "3->3": 32,
+    "3->4": 69,
+    "3->5": 78,
+    "3->6": 4,
+    "4->0": 14,
+    "4->1": 1,
+    "4->2": 13,
+    "4->3": 17,
+    "4->4": 70,
+    "4->5": 128,
+    "4->6": 7,
+    "5->0": 5,
+    "5->1": 2,
+    "5->2": 12,
+    "5->3": 10,
+    "5->4": 75,
+    "5->5": 139,
+    "5->6": 7
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.3131210773587227,
+   "si_sdri": 2.7777979689836503,
+   "count_acc": 0.156,
+   "si_sdri_estcount": 1.8514765117168426,
+   "count_confusion": {
+    "2->0": 61,
+    "2->1": 15,
+    "2->2": 39,
+    "2->3": 39,
+    "2->4": 54,
+    "2->5": 42
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.59360806119442,
+   "si_sdri": 2.804751556366682,
+   "count_acc": 0.128,
+   "si_sdri_estcount": 2.1193997224867345,
+   "count_confusion": {
+    "3->0": 27,
+    "3->1": 11,
+    "3->2": 29,
+    "3->3": 32,
+    "3->4": 69,
+    "3->5": 78,
+    "3->6": 4
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.6123517847061155,
+   "si_sdri": 2.6859204952716826,
+   "count_acc": 0.28,
+   "si_sdri_estcount": 2.2325420949459076,
+   "count_confusion": {
+    "4->0": 14,
+    "4->1": 1,
+    "4->2": 13,
+    "4->3": 17,
+    "4->4": 70,
+    "4->5": 128,
+    "4->6": 7
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.644211902618408,
+   "si_sdri": 2.595962271332741,
+   "count_acc": 0.556,
+   "si_sdri_estcount": 2.0660135945156215,
+   "count_confusion": {
+    "5->0": 5,
+    "5->1": 2,
+    "5->2": 12,
+    "5->3": 10,
+    "5->4": 75,
+    "5->5": 139,
+    "5->6": 7
+   }
+  },
+  "threshold": 0.55,
+  "n_chunked_oom_fallback": 0,
+  "input_rms_db": null,
+  "checkpoint": "runs\\abl_A_v1\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 280.9,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1"
+  }
+ },
+ "ablation_B": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.19466986875236,
+   "si_sdri": 2.8122613976970317,
+   "count_acc": 0.241,
+   "si_sdri_estcount": 2.4585274353672286,
+   "count_confusion": {
+    "2->0": 4,
+    "2->1": 15,
+    "2->2": 24,
+    "2->3": 50,
+    "2->4": 67,
+    "2->5": 78,
+    "2->6": 12,
+    "3->0": 2,
+    "3->1": 6,
+    "3->2": 10,
+    "3->3": 28,
+    "3->4": 68,
+    "3->5": 118,
+    "3->6": 18,
+    "4->0": 1,
+    "4->1": 4,
+    "4->2": 4,
+    "4->3": 14,
+    "4->4": 44,
+    "4->5": 141,
+    "4->6": 42,
+    "5->1": 1,
+    "5->2": 2,
+    "5->3": 7,
+    "5->4": 52,
+    "5->5": 145,
+    "5->6": 43
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.202167230308056,
+   "si_sdri": 2.888751831769943,
+   "count_acc": 0.096,
+   "si_sdri_estcount": 2.450575915813446,
+   "count_confusion": {
+    "2->0": 4,
+    "2->1": 15,
+    "2->2": 24,
+    "2->3": 50,
+    "2->4": 67,
+    "2->5": 78,
+    "2->6": 12
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.5062835621833806,
+   "si_sdri": 2.8920760381519797,
+   "count_acc": 0.112,
+   "si_sdri_estcount": 2.5384947143094614,
+   "count_confusion": {
+    "3->0": 2,
+    "3->1": 6,
+    "3->2": 10,
+    "3->3": 28,
+    "3->4": 68,
+    "3->5": 118,
+    "3->6": 18
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.509761416435242,
+   "si_sdri": 2.788510892868042,
+   "count_acc": 0.176,
+   "si_sdri_estcount": 2.515644536972046,
+   "count_confusion": {
+    "4->0": 1,
+    "4->1": 4,
+    "4->2": 4,
+    "4->3": 14,
+    "4->4": 44,
+    "4->5": 141,
+    "4->6": 42
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.560467266082764,
+   "si_sdri": 2.6797068279981615,
+   "count_acc": 0.58,
+   "si_sdri_estcount": 2.3293945743739606,
+   "count_confusion": {
+    "5->1": 1,
+    "5->2": 2,
+    "5->3": 7,
+    "5->4": 52,
+    "5->5": 145,
+    "5->6": 43
+   }
+  },
+  "checkpoint": "runs\\abl_B_frontend_mask\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 260.2,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1",
+   "mask_on": "frontend"
+  }
+ },
+ "ablation_B_cal": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.19466986875236,
+   "si_sdri": 2.8122613976970317,
+   "count_acc": 0.255,
+   "si_sdri_estcount": 2.0465220603935887,
+   "count_confusion": {
+    "2->0": 40,
+    "2->1": 73,
+    "2->2": 27,
+    "2->3": 28,
+    "2->4": 54,
+    "2->5": 27,
+    "2->6": 1,
+    "3->0": 21,
+    "3->1": 36,
+    "3->2": 25,
+    "3->3": 37,
+    "3->4": 68,
+    "3->5": 56,
+    "3->6": 7,
+    "4->0": 12,
+    "4->1": 13,
+    "4->2": 11,
+    "4->3": 26,
+    "4->4": 89,
+    "4->5": 91,
+    "4->6": 8,
+    "5->0": 2,
+    "5->1": 14,
+    "5->2": 15,
+    "5->3": 22,
+    "5->4": 88,
+    "5->5": 102,
+    "5->6": 7
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.202167230308056,
+   "si_sdri": 2.888751831769943,
+   "count_acc": 0.108,
+   "si_sdri_estcount": 1.8686852226257324,
+   "count_confusion": {
+    "2->0": 40,
+    "2->1": 73,
+    "2->2": 27,
+    "2->3": 28,
+    "2->4": 54,
+    "2->5": 27,
+    "2->6": 1
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.5062835621833806,
+   "si_sdri": 2.8920760381519797,
+   "count_acc": 0.148,
+   "si_sdri_estcount": 2.098771059383638,
+   "count_confusion": {
+    "3->0": 21,
+    "3->1": 36,
+    "3->2": 25,
+    "3->3": 37,
+    "3->4": 68,
+    "3->5": 56,
+    "3->6": 7
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.509761416435242,
+   "si_sdri": 2.788510892868042,
+   "count_acc": 0.356,
+   "si_sdri_estcount": 2.21201900434494,
+   "count_confusion": {
+    "4->0": 12,
+    "4->1": 13,
+    "4->2": 11,
+    "4->3": 26,
+    "4->4": 89,
+    "4->5": 91,
+    "4->6": 8
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.560467266082764,
+   "si_sdri": 2.6797068279981615,
+   "count_acc": 0.408,
+   "si_sdri_estcount": 2.0066129552200436,
+   "count_confusion": {
+    "5->0": 2,
+    "5->1": 14,
+    "5->2": 15,
+    "5->3": 22,
+    "5->4": 88,
+    "5->5": 102,
+    "5->6": 7
+   }
+  },
+  "threshold": 0.57,
+  "n_chunked_oom_fallback": 0,
+  "input_rms_db": null,
+  "checkpoint": "runs\\abl_B_frontend_mask\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 256.3,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1",
+   "mask_on": "frontend"
+  }
+ },
+ "ablation_C": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.295647734642029,
+   "si_sdri": 2.7112835439443588,
+   "count_acc": 0.304,
+   "si_sdri_estcount": 2.579296637909487,
+   "count_confusion": {
+    "2->2": 12,
+    "2->3": 102,
+    "2->4": 87,
+    "2->5": 49,
+    "3->2": 4,
+    "3->3": 57,
+    "3->4": 89,
+    "3->5": 100,
+    "4->2": 1,
+    "4->3": 34,
+    "4->4": 54,
+    "4->5": 161,
+    "5->3": 24,
+    "5->4": 45,
+    "5->5": 181
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.2326820319890976,
+   "si_sdri": 2.8582370235919954,
+   "count_acc": 0.048,
+   "si_sdri_estcount": 2.7374077574014666,
+   "count_confusion": {
+    "2->2": 12,
+    "2->3": 102,
+    "2->4": 87,
+    "2->5": 49
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.560656807541847,
+   "si_sdri": 2.837702829897404,
+   "count_acc": 0.228,
+   "si_sdri_estcount": 2.6864805724024774,
+   "count_confusion": {
+    "3->2": 4,
+    "3->3": 57,
+    "3->4": 89,
+    "3->5": 100
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.636323895454407,
+   "si_sdri": 2.661948405504227,
+   "count_acc": 0.216,
+   "si_sdri_estcount": 2.50013920879364,
+   "count_confusion": {
+    "4->2": 1,
+    "4->3": 34,
+    "4->4": 54,
+    "4->5": 161
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.752928203582764,
+   "si_sdri": 2.4872459167838095,
+   "count_acc": 0.724,
+   "si_sdri_estcount": 2.3931590130403637,
+   "count_confusion": {
+    "5->3": 24,
+    "5->4": 45,
+    "5->5": 181
+   }
+  },
+  "checkpoint": "runs\\abl_C_gate_halting\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 265.6,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1",
+   "mask_on": "frontend",
+   "gated": true
+  }
+ },
+ "ablation_C_cal": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -5.295647734642029,
+   "si_sdri": 2.7112835439443588,
+   "count_acc": 0.328,
+   "si_sdri_estcount": 2.4097004679888485,
+   "count_confusion": {
+    "2->2": 41,
+    "2->3": 126,
+    "2->4": 70,
+    "2->5": 13,
+    "3->2": 13,
+    "3->3": 119,
+    "3->4": 96,
+    "3->5": 22,
+    "4->2": 5,
+    "4->3": 87,
+    "4->4": 107,
+    "4->5": 51,
+    "5->2": 2,
+    "5->3": 65,
+    "5->4": 122,
+    "5->5": 61
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -2.2326820319890976,
+   "si_sdri": 2.8582370235919954,
+   "count_acc": 0.164,
+   "si_sdri_estcount": 2.614938535571098,
+   "count_confusion": {
+    "2->2": 41,
+    "2->3": 126,
+    "2->4": 70,
+    "2->5": 13
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -4.560656807541847,
+   "si_sdri": 2.837702829897404,
+   "count_acc": 0.476,
+   "si_sdri_estcount": 2.518981333255768,
+   "count_confusion": {
+    "3->2": 13,
+    "3->3": 119,
+    "3->4": 96,
+    "3->5": 22
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -6.636323895454407,
+   "si_sdri": 2.661948405504227,
+   "count_acc": 0.428,
+   "si_sdri_estcount": 2.318276125192642,
+   "count_confusion": {
+    "4->2": 5,
+    "4->3": 87,
+    "4->4": 107,
+    "4->5": 51
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -7.752928203582764,
+   "si_sdri": 2.4872459167838095,
+   "count_acc": 0.244,
+   "si_sdri_estcount": 2.1866058779358863,
+   "count_confusion": {
+    "5->2": 2,
+    "5->3": 65,
+    "5->4": 122,
+    "5->5": 61
+   }
+  },
+  "threshold": 0.67,
+  "n_chunked_oom_fallback": 0,
+  "input_rms_db": null,
+  "checkpoint": "runs\\abl_C_gate_halting\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 258.9,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v1",
+   "mask_on": "frontend",
+   "gated": true
+  }
+ },
+ "ablation_D": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -4.066147237866185,
+   "si_sdri": 3.94078403198719,
+   "count_acc": 0.298,
+   "si_sdri_estcount": 3.777926126003731,
+   "count_confusion": {
+    "2->2": 19,
+    "2->3": 52,
+    "2->4": 75,
+    "2->5": 104,
+    "3->2": 5,
+    "3->3": 25,
+    "3->4": 55,
+    "3->5": 165,
+    "4->2": 3,
+    "4->3": 6,
+    "4->4": 32,
+    "4->5": 209,
+    "5->3": 1,
+    "5->4": 27,
+    "5->5": 222
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -0.7487995438575744,
+   "si_sdri": 4.342119505405426,
+   "count_acc": 0.076,
+   "si_sdri_estcount": 4.111613632917404,
+   "count_confusion": {
+    "2->2": 19,
+    "2->3": 52,
+    "2->4": 75,
+    "2->5": 104
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -3.26098629700765,
+   "si_sdri": 4.137373322486877,
+   "count_acc": 0.1,
+   "si_sdri_estcount": 3.99300284624286,
+   "count_confusion": {
+    "3->2": 5,
+    "3->3": 25,
+    "3->4": 55,
+    "3->5": 165
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -5.49708639383316,
+   "si_sdri": 3.801185896396637,
+   "count_acc": 0.128,
+   "si_sdri_estcount": 3.6492942743301393,
+   "count_confusion": {
+    "4->2": 3,
+    "4->3": 6,
+    "4->4": 32,
+    "4->5": 209
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -6.757716716766358,
+   "si_sdri": 3.4824574036598204,
+   "count_acc": 0.888,
+   "si_sdri_estcount": 3.357793750524521,
+   "count_confusion": {
+    "5->3": 1,
+    "5->4": 27,
+    "5->5": 222
+   }
+  },
+  "checkpoint": "runs\\abl_D_v2\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 381.1,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v2"
+  }
+ },
+ "ablation_D_cal": {
+  "overall": {
+   "n": 1000,
+   "si_sdr": -4.066147237866185,
+   "si_sdri": 3.94078403198719,
+   "count_acc": 0.317,
+   "si_sdri_estcount": 3.6413367441480515,
+   "count_confusion": {
+    "2->1": 2,
+    "2->2": 34,
+    "2->3": 73,
+    "2->4": 76,
+    "2->5": 65,
+    "3->1": 1,
+    "3->2": 14,
+    "3->3": 44,
+    "3->4": 73,
+    "3->5": 118,
+    "4->2": 6,
+    "4->3": 18,
+    "4->4": 59,
+    "4->5": 167,
+    "5->2": 3,
+    "5->3": 9,
+    "5->4": 58,
+    "5->5": 180
+   }
+  },
+  "2spk": {
+   "n": 250,
+   "si_sdr": -0.7487995438575744,
+   "si_sdri": 4.342119505405426,
+   "count_acc": 0.136,
+   "si_sdri_estcount": 3.917654039621353,
+   "count_confusion": {
+    "2->1": 2,
+    "2->2": 34,
+    "2->3": 73,
+    "2->4": 76,
+    "2->5": 65
+   }
+  },
+  "3spk": {
+   "n": 250,
+   "si_sdr": -3.26098629700765,
+   "si_sdri": 4.137373322486877,
+   "count_acc": 0.176,
+   "si_sdri_estcount": 3.8451233675498515,
+   "count_confusion": {
+    "3->1": 1,
+    "3->2": 14,
+    "3->3": 44,
+    "3->4": 73,
+    "3->5": 118
+   }
+  },
+  "4spk": {
+   "n": 250,
+   "si_sdr": -5.49708639383316,
+   "si_sdri": 3.801185896396637,
+   "count_acc": 0.236,
+   "si_sdri_estcount": 3.540550723075867,
+   "count_confusion": {
+    "4->2": 6,
+    "4->3": 18,
+    "4->4": 59,
+    "4->5": 167
+   }
+  },
+  "5spk": {
+   "n": 250,
+   "si_sdr": -6.757716716766358,
+   "si_sdri": 3.4824574036598204,
+   "count_acc": 0.72,
+   "si_sdri_estcount": 3.2620188463451343,
+   "count_confusion": {
+    "5->2": 3,
+    "5->3": 9,
+    "5->4": 58,
+    "5->5": 180
+   }
+  },
+  "threshold": 0.58,
+  "n_chunked_oom_fallback": 0,
+  "input_rms_db": null,
+  "checkpoint": "runs\\abl_D_v2\\best.pt",
+  "epoch": 5,
+  "data": "test",
+  "n_mixtures": 1000,
+  "seconds": 368.1,
+  "matching": "oracle Hungarian over all output slots",
+  "model": {
+   "preset": "v2"
+  }
+ },
+ "gtx1650_budget": {
+  "own_test": {
+   "overall": {
+    "n": 1000,
+    "si_sdr": -5.520108711734414,
+    "si_sdri": 2.486822555139661,
+    "count_acc": 0.25
+   },
+   "2spk": {
+    "n": 250,
+    "si_sdr": -2.5090354957580567,
+    "si_sdri": 2.5818835546970367,
+    "count_acc": 0.0
+   },
+   "3spk": {
+    "n": 250,
+    "si_sdr": -4.831354048788548,
+    "si_sdri": 2.5670055605769155,
+    "count_acc": 0.0
+   },
+   "4spk": {
+    "n": 250,
+    "si_sdr": -6.85318235874176,
+    "si_sdri": 2.4450899465084075,
+    "count_acc": 0.0
+   },
+   "5spk": {
+    "n": 250,
+    "si_sdr": -7.886862943649292,
+    "si_sdri": 2.3533111587762834,
+    "count_acc": 1.0
+   },
+   "checkpoint": "runs\\gtx1650_budget\\best.pt",
+   "epoch": 11,
+   "split": "test",
+   "n_mixtures": 1000,
+   "seconds": 255.3,
+   "matching": "oracle Hungarian over all 6 slots"
+  },
+  "own_test_cal": null,
+  "speed": null,
+  "eval_libri2mix_noisy": null,
+  "eval_libri2mix_clean": null,
+  "eval_libri3mix_noisy": null
+ },
+ "final_orpit_v2": {
+  "own_test": {
+   "overall": {
+    "n": 1000,
+    "si_sdr": -3.6734718847451733,
+    "si_sdri": 4.333459381759167,
+    "count_acc": 0.299,
+    "si_sdri_estcount": 4.091126123093068,
+    "count_confusion": {
+     "2->3": 128,
+     "2->4": 61,
+     "2->5": 61,
+     "3->3": 73,
+     "3->4": 62,
+     "3->5": 115,
+     "4->3": 31,
+     "4->4": 44,
+     "4->5": 175,
+     "5->3": 28,
+     "5->4": 40,
+     "5->5": 182
+    }
+   },
+   "2spk": {
+    "n": 250,
+    "si_sdr": -0.24483862739801407,
+    "si_sdri": 4.846080423355103,
+    "count_acc": 0.0,
+    "si_sdri_estcount": 4.625255066394806,
+    "count_confusion": {
+     "2->3": 128,
+     "2->4": 61,
+     "2->5": 61
+    }
+   },
+   "3spk": {
+    "n": 250,
+    "si_sdr": -2.8012118710391225,
+    "si_sdri": 4.597147718191147,
+    "count_acc": 0.292,
+    "si_sdri_estcount": 4.2782232979238035,
+    "count_confusion": {
+     "3->3": 73,
+     "3->4": 62,
+     "3->5": 115
+    }
+   },
+   "4spk": {
+    "n": 250,
+    "si_sdr": -5.130067234635353,
+    "si_sdri": 4.168205063819885,
+    "count_acc": 0.176,
+    "si_sdri_estcount": 3.986476242542267,
+    "count_confusion": {
+     "4->3": 31,
+     "4->4": 44,
+     "4->5": 175
+    }
+   },
+   "5spk": {
+    "n": 250,
+    "si_sdr": -6.517769805908203,
+    "si_sdri": 3.722404321670532,
+    "count_acc": 0.728,
+    "si_sdri_estcount": 3.474549885511398,
+    "count_confusion": {
+     "5->3": 28,
+     "5->4": 40,
+     "5->5": 182
+    }
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "test",
+   "n_mixtures": 1000,
+   "seconds": 389.1,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "own_test_cal": {
+   "overall": {
+    "n": 1000,
+    "si_sdr": -3.6734718847451733,
+    "si_sdri": 4.333459381759167,
+    "count_acc": 0.362,
+    "si_sdri_estcount": 3.5731840167716147,
+    "count_confusion": {
+     "2->1": 10,
+     "2->2": 101,
+     "2->3": 94,
+     "2->4": 40,
+     "2->5": 5,
+     "3->1": 2,
+     "3->2": 48,
+     "3->3": 122,
+     "3->4": 64,
+     "3->5": 14,
+     "4->1": 1,
+     "4->2": 21,
+     "4->3": 104,
+     "4->4": 78,
+     "4->5": 46,
+     "5->2": 17,
+     "5->3": 85,
+     "5->4": 87,
+     "5->5": 61
+    }
+   },
+   "2spk": {
+    "n": 250,
+    "si_sdr": -0.24483862739801407,
+    "si_sdri": 4.846080423355103,
+    "count_acc": 0.404,
+    "si_sdri_estcount": 4.218215147972107,
+    "count_confusion": {
+     "2->1": 10,
+     "2->2": 101,
+     "2->3": 94,
+     "2->4": 40,
+     "2->5": 5
+    }
+   },
+   "3spk": {
+    "n": 250,
+    "si_sdr": -2.8012118710391225,
+    "si_sdri": 4.597147718191147,
+    "count_acc": 0.488,
+    "si_sdri_estcount": 3.671789329558611,
+    "count_confusion": {
+     "3->1": 2,
+     "3->2": 48,
+     "3->3": 122,
+     "3->4": 64,
+     "3->5": 14
+    }
+   },
+   "4spk": {
+    "n": 250,
+    "si_sdr": -5.130067234635353,
+    "si_sdri": 4.168205063819885,
+    "count_acc": 0.312,
+    "si_sdri_estcount": 3.3512984058856965,
+    "count_confusion": {
+     "4->1": 1,
+     "4->2": 21,
+     "4->3": 104,
+     "4->4": 78,
+     "4->5": 46
+    }
+   },
+   "5spk": {
+    "n": 250,
+    "si_sdr": -6.517769805908203,
+    "si_sdri": 3.722404321670532,
+    "count_acc": 0.244,
+    "si_sdri_estcount": 3.051433183670044,
+    "count_confusion": {
+     "5->2": 17,
+     "5->3": 85,
+     "5->4": 87,
+     "5->5": 61
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 0,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "test",
+   "n_mixtures": 1000,
+   "seconds": 365.7,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "speed": {
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "params": 6141578,
+   "device": "NVIDIA GeForce GTX 1650",
+   "precision": "fp32",
+   "results": [
+    {
+     "seconds": 4.0,
+     "ms": 271.6,
+     "rtf": 0.0679,
+     "peak_vram_mb": 1040
+    },
+    {
+     "seconds": 8.0,
+     "ms": 1582.6,
+     "rtf": 0.1978,
+     "peak_vram_mb": 4001
+    },
+    {
+     "seconds": 16.0,
+     "error": "OOM"
+    }
+   ]
+  },
+  "eval_libri2mix_noisy": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 1.1766754541927948,
+    "si_sdri": 3.111354939671854,
+    "count_acc": 0.3363333333333333,
+    "si_sdri_estcount": 1.3722658830285073,
+    "count_confusion": {
+     "2->0": 67,
+     "2->1": 1893,
+     "2->2": 1009,
+     "2->3": 31
+    }
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 1.1766754541927948,
+    "si_sdri": 3.111354939671854,
+    "count_acc": 0.3363333333333333,
+    "si_sdri_estcount": 1.3722658830285073,
+    "count_confusion": {
+     "2->0": 67,
+     "2->1": 1893,
+     "2->2": 1009,
+     "2->3": 31
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 48,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 3596.0,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "eval_libri2mix_clean": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 2.203987506762768,
+    "si_sdri": 2.203349084558586,
+    "count_acc": 0.3,
+    "si_sdri_estcount": 0.6721715227290987,
+    "count_confusion": {
+     "2->0": 170,
+     "2->1": 1906,
+     "2->2": 900,
+     "2->3": 24
+    }
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 2.203987506762768,
+    "si_sdri": 2.203349084558586,
+    "count_acc": 0.3,
+    "si_sdri_estcount": 0.6721715227290987,
+    "count_confusion": {
+     "2->0": 170,
+     "2->1": 1906,
+     "2->2": 900,
+     "2->3": 24
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 48,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_clean",
+   "n_mixtures": 3000,
+   "seconds": 3462.1,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "eval_libri3mix_noisy": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": -1.6622692953491738,
+    "si_sdri": 2.6944913920931284,
+    "count_acc": 0.033,
+    "si_sdri_estcount": 1.157774366414999,
+    "count_confusion": {
+     "3->1": 1158,
+     "3->2": 1739,
+     "3->3": 99,
+     "3->4": 4
+    }
+   },
+   "3spk": {
+    "n": 3000,
+    "si_sdr": -1.6622692953491738,
+    "si_sdri": 2.6944913920931284,
+    "count_acc": 0.033,
+    "si_sdri_estcount": 1.157774366414999,
+    "count_confusion": {
+     "3->1": 1158,
+     "3->2": 1739,
+     "3->3": 99,
+     "3->4": 4
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 1,
+   "input_rms_db": null,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri3Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 2066.4,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "eval_libri2mix_noisy_norm": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 1.2945046499085924,
+    "si_sdri": 3.2291841480980317,
+    "count_acc": 0.005333333333333333,
+    "si_sdri_estcount": 2.9231239797572295,
+    "count_confusion": {
+     "2->2": 16,
+     "2->3": 1439,
+     "2->4": 1222,
+     "2->5": 323
+    }
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 1.2945046499085924,
+    "si_sdri": 3.2291841480980317,
+    "count_acc": 0.005333333333333333,
+    "si_sdri_estcount": 2.9231239797572295,
+    "count_confusion": {
+     "2->2": 16,
+     "2->3": 1439,
+     "2->4": 1222,
+     "2->5": 323
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 48,
+   "input_rms_db": -19.0,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 3459.5,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "eval_libri2mix_clean_norm": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 2.360001840746651,
+    "si_sdri": 2.3593634297562143,
+    "count_acc": 0.0016666666666666668,
+    "si_sdri_estcount": 2.025479948690782,
+    "count_confusion": {
+     "2->2": 5,
+     "2->3": 1055,
+     "2->4": 1312,
+     "2->5": 628
+    }
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 2.360001840746651,
+    "si_sdri": 2.3593634297562143,
+    "count_acc": 0.0016666666666666668,
+    "si_sdri_estcount": 2.025479948690782,
+    "count_confusion": {
+     "2->2": 5,
+     "2->3": 1055,
+     "2->4": 1312,
+     "2->5": 628
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 48,
+   "input_rms_db": -19.0,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_clean",
+   "n_mixtures": 3000,
+   "seconds": 3372.7,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  },
+  "eval_libri3mix_noisy_norm": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": -1.4655646439319534,
+    "si_sdri": 2.8911960398984764,
+    "count_acc": 0.5246666666666666,
+    "si_sdri_estcount": 2.186133921023148,
+    "count_confusion": {
+     "3->2": 3,
+     "3->3": 1574,
+     "3->4": 1260,
+     "3->5": 163
+    }
+   },
+   "3spk": {
+    "n": 3000,
+    "si_sdr": -1.4655646439319534,
+    "si_sdri": 2.8911960398984764,
+    "count_acc": 0.5246666666666666,
+    "si_sdri_estcount": 2.186133921023148,
+    "count_confusion": {
+     "3->2": 3,
+     "3->3": 1574,
+     "3->4": 1260,
+     "3->5": 163
+    }
+   },
+   "threshold": 0.71,
+   "n_chunked_oom_fallback": 1,
+   "input_rms_db": -19.0,
+   "checkpoint": "runs\\final_orpit_v2\\best.pt",
+   "epoch": 10,
+   "data": "E:\\orpit_data\\LibriMix\\Libri3Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 2015.8,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2"
+   }
+  }
+ },
+ "final_convtasnet": {
+  "own_test": {
+   "overall": {
+    "n": 250,
+    "si_sdr": 0.5377381559610367,
+    "si_sdri": 5.628657223463058
+   },
+   "2spk": {
+    "n": 250,
+    "si_sdr": 0.5377381559610367,
+    "si_sdri": 5.628657223463058
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "input_rms_db": null,
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "epoch": 3,
+   "data": "test",
+   "n_mixtures": 250,
+   "seconds": 82.1,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2",
+    "arch": "convtasnet",
+    "n_src": 2
+   }
+  },
+  "own_test_cal": null,
+  "speed": {
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "params": 5050545,
+   "device": "NVIDIA GeForce GTX 1650",
+   "precision": "fp32",
+   "results": [
+    {
+     "seconds": 4.0,
+     "ms": 254.5,
+     "rtf": 0.0636,
+     "peak_vram_mb": 112
+    },
+    {
+     "seconds": 8.0,
+     "ms": 587.7,
+     "rtf": 0.0735,
+     "peak_vram_mb": 201
+    },
+    {
+     "seconds": 16.0,
+     "ms": 1220.9,
+     "rtf": 0.0763,
+     "peak_vram_mb": 384
+    }
+   ]
+  },
+  "eval_libri2mix_noisy": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 1.9119472533029815,
+    "si_sdri": 3.846626742973924
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 1.9119472533029815,
+    "si_sdri": 3.846626742973924
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "input_rms_db": null,
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "epoch": 3,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 1326.1,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2",
+    "arch": "convtasnet",
+    "n_src": 2
+   }
+  },
+  "eval_libri2mix_clean": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 2.8832305624435346,
+    "si_sdri": 2.882592147707939
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 2.8832305624435346,
+    "si_sdri": 2.882592147707939
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "input_rms_db": null,
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "epoch": 3,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_clean",
+   "n_mixtures": 3000,
+   "seconds": 1315.4,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2",
+    "arch": "convtasnet",
+    "n_src": 2
+   }
+  },
+  "eval_libri3mix_noisy": null,
+  "eval_libri2mix_noisy_norm": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 1.9119479095302523,
+    "si_sdri": 3.8466274090545873
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 1.9119479095302523,
+    "si_sdri": 3.8466274090545873
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "input_rms_db": -19.0,
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "epoch": 3,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_both",
+   "n_mixtures": 3000,
+   "seconds": 1380.3,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2",
+    "arch": "convtasnet",
+    "n_src": 2
+   }
+  },
+  "eval_libri2mix_clean_norm": {
+   "overall": {
+    "n": 3000,
+    "si_sdr": 2.883230755938838,
+    "si_sdri": 2.8825923428088425
+   },
+   "2spk": {
+    "n": 3000,
+    "si_sdr": 2.883230755938838,
+    "si_sdri": 2.8825923428088425
+   },
+   "threshold": 0.5,
+   "n_chunked_oom_fallback": 0,
+   "input_rms_db": -19.0,
+   "checkpoint": "runs\\final_convtasnet\\best.pt",
+   "epoch": 3,
+   "data": "E:\\orpit_data\\LibriMix\\Libri2Mix\\wav16k\\min\\test/mix_clean",
+   "n_mixtures": 3000,
+   "seconds": 1271.9,
+   "matching": "oracle Hungarian over all output slots",
+   "model": {
+    "preset": "v2",
+    "arch": "convtasnet",
+    "n_src": 2
+   }
+  }
+ }
+}
