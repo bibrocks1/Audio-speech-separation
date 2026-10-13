@@ -27,12 +27,15 @@ This repository is organized into three separate pipelines, each addressing dist
   * Adaptive recurrent looping until speaker channels are clean.
 
 ### 3. [OR-Pit (Branchformer & Attractor Separation)](./OR-Pit/)
-* **Primary Task**: Raw audio-to-audio waveform separation.
-* **Key Innovation**: Utilizes high-capacity Branchformer layers coupled with dynamic speaker attractor vectors to track, separate, and isolate multiple overlapping speakers.
+* **Primary Task**: Speaker-count-agnostic audio-to-audio waveform separation (2–5 speakers, noisy, single channel).
+* **Key Innovation**: One forward pass produces six speaker slots plus a halting classifier per slot, so a single model separates every voice and estimates how many speakers are present.
 * **Architectural Features**:
-  * Parallel self-attention and depth-wise convolution (Branchformer block).
-  * **Speaker Attractor Generator** for tracking spatial speaker locations.
-  * Permutation Invariant Training (PIT) matching loss.
+  * Conv1d learned filterbank + **Branchformer** encoder (self-attention in parallel with a gated convolutional MLP).
+  * **Transformer-decoder attractors**: six learned speaker queries attend to a pooled mixture embedding.
+  * Attractor-conditioned soft masks refined by a **FiLM-conditioned TCN**, decoded with ConvTranspose1d.
+  * **Hungarian permutation-invariant training** on SI-SDR (O(N³) instead of O(N!)) with a DETR-style halting-aware matching cost.
+* **Results** (single GTX 1650, 4 GB; SI-SDRi): **+4.33 dB** on 1,000 held-out noisy 2–5-speaker mixtures (+2.49 dB for the original spec); 3.11 dB on Libri2Mix and 2.69 dB on Libri3Mix (noisy test sets); a cumulative ablation and a Conv-TasNet baseline trained with the same data and GPU time. Details in the [OR-Pit README](./OR-Pit/README.md).
+* **Status**: Trained and benchmarked end to end; speaker counting (36 % exact) is the main open problem.
 
 ---
 
